@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Dashboard — Giovana Troncos Vela</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1916;--ink2:#3d3d3a;--ink3:#6b6b67;--ink4:#9c9a92;
+  --paper:#f7f5f0;--paper2:#eeecea;--card:#ffffff;
+  --gold:#8a6c1e;--gold-l:#f5edd6;--gold-m:#c9a84c;
+  --teal:#0f6e56;--teal-l:#e1f5ee;--teal-m:#1d9e75;
+  --border:#e2dfd8;--border2:#ccc9c0;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --ink:#f0ede6;--ink2:#c8c5bc;--ink3:#8a887f;--ink4:#5c5a54;
+    --paper:#181714;--paper2:#222019;--card:#1e1c19;
+    --gold:#c9a84c;--gold-l:#2a2210;--gold-m:#8a6c1e;
+    --teal:#1d9e75;--teal-l:#04342c;--teal-m:#0f6e56;
+    --border:#2e2c27;--border2:#3a3830;
+  }
+}
+body{background:var(--paper);font-family:'Outfit',sans-serif;color:var(--ink);line-height:1.5}
+.wrap{display:grid;grid-template-columns:200px 1fr;min-height:600px}
+
+.left{background:#1a1916;padding:28px 20px;display:flex;flex-direction:column;gap:24px}
+@media(prefers-color-scheme:dark){.left{background:#0e0d0b}}
+.monogram{width:56px;height:56px;border-radius:50%;border:1.5px solid #c9a84c;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:#c9a84c;letter-spacing:1px}
+.l-name{font-family:'Playfair Display',serif;font-size:17px;color:#f0ede6;line-height:1.2;margin-top:2px}
+.l-title{font-size:10px;color:#6b6b67;letter-spacing:.1em;text-transform:uppercase;margin-top:4px;line-height:1.4}
+.l-divider{height:0.5px;background:#2e2c27;width:100%}
+.l-section-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#5c5a54;margin-bottom:8px;font-weight:500}
+.l-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.l-icon{width:12px;height:12px;flex-shrink:0;margin-top:2px;opacity:.5}
+.l-text{font-size:11px;color:#9c9a92;line-height:1.4}
+.pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:12px;margin:2px 2px 0 0;border:0.5px solid #2e2c27;color:#6b6b67}
+.pill.hi{border-color:#8a6c1e;color:#c9a84c;background:rgba(138,108,30,.1)}
+.skill-name{font-size:10px;color:#6b6b67;display:flex;justify-content:space-between;margin-bottom:3px}
+.skill-track{height:2px;background:#2e2c27;border-radius:1px;overflow:hidden;margin-bottom:7px}
+.skill-fill{height:100%;border-radius:1px;background:#c9a84c}
+
+.right{background:var(--paper);padding:24px 24px 28px}
+.top-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.m-card{background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:12px 14px}
+.m-num{font-family:'Playfair Display',serif;font-size:24px;color:var(--ink);line-height:1}
+.m-label{font-size:10px;color:var(--ink3);margin-top:3px;line-height:1.3;font-weight:500;letter-spacing:.03em}
+.m-accent{font-size:10px;font-weight:500;margin-top:2px}
+.green{color:var(--teal-m)}
+.gold-c{color:var(--gold)}
+
+.sec-head{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4);font-weight:500;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-head::after{content:'';flex:1;height:0.5px;background:var(--border)}
+
+.exp-grid{display:flex;flex-direction:column;gap:0}
+.exp-row{display:grid;grid-template-columns:60px 16px 1fr;gap:0 12px;position:relative}
+.exp-row:not(:last-child) .v-line{position:absolute;left:76px;top:14px;bottom:0;width:0.5px;background:var(--border)}
+.exp-date{font-size:10px;color:var(--ink4);text-align:right;padding-top:3px;line-height:1.4}
+.exp-node{display:flex;flex-direction:column;align-items:center;padding-top:5px}
+.node-dot{width:8px;height:8px;border-radius:50%;background:var(--teal-m);flex-shrink:0}
+.node-dot.gold{background:var(--gold-m)}
+.node-dot.gray{background:var(--ink4)}
+.exp-body{padding-bottom:16px}
+.exp-co{font-size:12px;font-weight:500;color:var(--ink);line-height:1.2}
+.exp-role{font-size:11px;color:var(--teal);margin-bottom:5px}
+.exp-role.g{color:var(--gold)}
+.star-ach{background:var(--teal-l);border-left:2px solid var(--teal-m);padding:6px 9px;border-radius:0 6px 6px 0;font-size:10px;color:var(--ink2);line-height:1.5;margin-bottom:5px}
+.bullets{display:flex;flex-direction:column;gap:2px}
+.bul{font-size:10px;color:var(--ink3);display:flex;gap:5px;line-height:1.4}
+.bul::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--teal-m);flex-shrink:0;margin-top:5px}
+
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.b-card{background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:14px}
+.edu-block{padding-bottom:10px;margin-bottom:10px;border-bottom:0.5px solid var(--border)}
+.edu-block:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
+.edu-name{font-size:12px;font-weight:500;color:var(--ink)}
+.edu-deg{font-size:10px;color:var(--teal);margin-top:1px}
+.edu-yr{font-size:10px;color:var(--ink4);margin-top:1px}
+.badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:10px;font-weight:500;vertical-align:middle;margin-left:5px}
+.b-act{background:var(--teal-l);color:var(--teal)}
+.b-done{background:var(--gold-l);color:var(--gold)}
+
+.cert-list{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.cert{background:var(--paper2);border-radius:6px;padding:7px 9px;border:0.5px solid var(--border)}
+.cert-t{font-size:10px;font-weight:500;color:var(--ink2)}
+.cert-s{font-size:9px;color:var(--ink4);margin-top:1px}
+
+.impact-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.imp{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:10px 12px}
+.imp-ico{width:28px;height:28px;border-radius:7px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.imp-t{font-size:11px;font-weight:500;color:var(--ink)}
+.imp-d{font-size:10px;color:var(--ink3);margin-top:2px;line-height:1.4}
+.prog-row{display:flex;align-items:center;gap:7px;margin-top:5px}
+.prog-track{flex:1;height:3px;background:var(--teal-l);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--teal-m)}
+.prog-l{font-size:9px;color:var(--teal);font-weight:500;min-width:28px;text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- SIDEBAR -->
+  <div class="left">
+    <div>
+      <div class="monogram">GT</div>
+      <div class="l-name">Giovana<br>Troncos Vela</div>
+      <div class="l-title">Analista Sr. Procesos<br>BPM · SIG · Innovación</div>
+    </div>
+    <div class="l-divider"></div>
+    <div>
+      <div class="l-section-label">Contacto</div>
+      <div class="l-row">
+        <svg class="l-icon" viewBox="0 0 12 12" fill="none"><path d="M6 1C4.07 1 2.5 2.57 2.5 4.5c0 2.63 3.5 6.5 3.5 6.5s3.5-3.87 3.5-6.5C9.5 2.57 7.93 1 6 1z" stroke="#9c9a92" stroke-width="1"/></svg>
+        <span class="l-text">San Martín de Porres, Lima</span>
+      </div>
+      <div class="l-row">
+        <svg class="l-icon" viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1" stroke="#9c9a92" stroke-width="1"/><path d="M1 5l5 3 5-3" stroke="#9c9a92" stroke-width="1"/></svg>
+        <span class="l-text">trovelghy20@gmail.com</span>
+      </div>
+      <div class="l-row">
+        <svg class="l-icon" viewBox="0 0 12 12" fill="none"><path d="M2 1.5h2.5l1 2.5-1.5 1s.7 1.7 2.5 2.5l1-1.5 2.5 1V9.5c0 .4-4.5 2-8.5-7z" stroke="#9c9a92" stroke-width="1"/></svg>
+        <span class="l-text">+51 921 949 285</span>
+      </div>
+      <div class="l-row">
+        <svg class="l-icon" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="#9c9a92" stroke-width="1"/><circle cx="4" cy="4" r=".7" fill="#9c9a92"/><path d="M4 6v3m0-3c0-1.1 4-1.1 4 0v3" stroke="#9c9a92" stroke-width="1"/></svg>
+        <span class="l-text">linkedin/giovana-troncos-vela</span>
+      </div>
+    </div>
+    <div class="l-divider"></div>
+    <div>
+      <div class="l-section-label">Especialidades</div>
+      <span class="pill hi">BPM</span><span class="pill hi">Bizagi</span><span class="pill hi">Power BI</span><span class="pill hi">ISO 9001</span>
+      <span class="pill">ISO 45001</span><span class="pill">ISO 14001</span><span class="pill">As-Is/To-Be</span>
+      <span class="pill">KPIs</span><span class="pill">SIG</span><span class="pill">SQL</span><span class="pill">Python</span>
+    </div>
+    <div class="l-divider"></div>
+    <div>
+      <div class="l-section-label">Herramientas</div>
+      <div class="skill-name"><span>Excel</span><span>Avanzado</span></div><div class="skill-track"><div class="skill-fill" style="width:92%"></div></div>
+      <div class="skill-name"><span>SketchUp</span><span>Avanzado</span></div><div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+      <div class="skill-name"><span>Bizagi</span><span>Intermedio</span></div><div class="skill-track"><div class="skill-fill" style="width:72%"></div></div>
+      <div class="skill-name"><span>Power BI</span><span>Intermedio</span></div><div class="skill-track"><div class="skill-fill" style="width:68%"></div></div>
+      <div class="skill-name"><span>SQL</span><span>Intermedio</span></div><div class="skill-track"><div class="skill-fill" style="width:60%"></div></div>
+      <div class="skill-name"><span>AutoCAD</span><span>Intermedio</span></div><div class="skill-track"><div class="skill-fill" style="width:55%"></div></div>
+    </div>
+    <div class="l-divider"></div>
+    <div>
+      <div class="l-section-label">Idioma</div>
+      <div class="l-text">Inglés — básico (lectura)</div>
+    </div>
+    <div>
+      <div class="l-section-label" style="margin-top:4px">Intereses</div>
+      <div class="l-text">Dibujo · pintura · diseño de interiores · voluntariado</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="right">
+
+    <div class="top-bar">
+      <div class="m-card">
+        <div class="m-num">4+</div>
+        <div class="m-label">Años de experiencia</div>
+        <div class="m-accent green">Sector público · financiero</div>
+      </div>
+      <div class="m-card">
+        <div class="m-num">20+</div>
+        <div class="m-label">Procesos BPM implementados</div>
+        <div class="m-accent green">Fondo MiVivienda</div>
+      </div>
+      <div class="m-card">
+        <div class="m-num" style="font-size:20px;padding-top:3px">3% → 34%</div>
+        <div class="m-label">Madurez de innovación</div>
+        <div class="m-accent gold-c">En 12 meses ↑ 11×</div>
+      </div>
+      <div class="m-card">
+        <div class="m-num">3</div>
+        <div class="m-label">Normas ISO gestionadas</div>
+        <div class="m-accent green">9001 · 45001 · 14001</div>
+      </div>
+    </div>
+
+    <div class="sec-head">Trayectoria laboral</div>
+    <div class="exp-grid">
+
+      <div class="exp-row">
+        <div class="v-line"></div>
+        <div class="exp-date">2022<br>— hoy</div>
+        <div class="exp-node"><div class="node-dot"></div></div>
+        <div class="exp-body">
+          <div class="exp-co">Fondo MiVivienda S.A.<span class="badge b-act">Actual</span></div>
+          <div class="exp-role">Analista en Organización y Gestión de Procesos</div>
+          <div class="star-ach">Llevó el índice de madurez del Sistema de Gestión de la Innovación de <strong>3% a 34.38%</strong> en un año, partiendo de cero base.</div>
+          <div class="bullets">
+            <div class="bul">Gestión BPM en +20 procesos con modelado As-Is/To-Be en Bizagi</div>
+            <div class="bul">Elaboró MOF, ROF, políticas y procedimientos para todas las gerencias</div>
+            <div class="bul">Seguimiento de KPIs en Power BI para decisiones gerenciales</div>
+            <div class="bul">Lideró automatización del proceso de gestión normativa</div>
+            <div class="bul">Comité SST — base normativa ISO 45001 implementada</div>
+            <div class="bul">Apoyo en certificación ISO 9001 e implementación de SIG</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="v-line"></div>
+        <div class="exp-date">2021<br>—2022</div>
+        <div class="exp-node"><div class="node-dot" style="background:#ccc9c0"></div></div>
+        <div class="exp-body">
+          <div class="exp-co">Fondo MiVivienda S.A.<span class="badge b-done">Prácticas</span></div>
+          <div class="exp-role">Practicante Profesional / Preprofesional</div>
+          <div class="bullets">
+            <div class="bul">Actualización y estandarización de procesos organizacionales</div>
+            <div class="bul">Manuales, flujogramas y mapas de procesos institucionales</div>
+            <div class="bul">Mejoras a solicitud de Entidades Reguladoras</div>
+            <div class="bul">Gestión archivística 5S de normativas físicas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="v-line"></div>
+        <div class="exp-date">2020</div>
+        <div class="exp-node"><div class="node-dot gold"></div></div>
+        <div class="exp-body">
+          <div class="exp-co">Corporación Inversiones LYS</div>
+          <div class="exp-role g">Auxiliar de Logística</div>
+          <div class="bullets">
+            <div class="bul">Compras y despachos con proveedores via ERP logístico</div>
+            <div class="bul">Implementación del listado maestro de materiales</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-date">2016</div>
+        <div class="exp-node"><div class="node-dot gray"></div></div>
+        <div class="exp-body">
+          <div class="exp-co">Univ. Peruana Simón Bolívar</div>
+          <div class="exp-role" style="color:#9c9a92">Tesorería — Servicios Especializados</div>
+          <div class="bullets">
+            <div class="bul">Cobranza, arqueo de caja, pagos y caja chica</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom-grid">
+      <div class="b-card">
+        <div class="sec-head">Educación</div>
+        <div class="edu-block">
+          <div class="edu-name">Universidad Europea de Madrid</div>
+          <div class="edu-deg">MBA — Maestría en Administración</div>
+          <div class="edu-yr">2025 — actualidad<span class="badge b-act">En curso</span></div>
+        </div>
+        <div class="edu-block">
+          <div class="edu-name">Universidad Tecnológica del Perú</div>
+          <div class="edu-deg">Título Profesional — Ing. Industrial</div>
+          <div class="edu-yr">2024 · Tercio Superior</div>
+        </div>
+        <div class="edu-block">
+          <div class="edu-name">Universidad Tecnológica del Perú</div>
+          <div class="edu-deg">Bachiller — Ing. Industrial</div>
+          <div class="edu-yr">2017 — 2022</div>
+        </div>
+      </div>
+      <div class="b-card">
+        <div class="sec-head">Formación complementaria</div>
+        <div class="cert-list">
+          <div class="cert"><div class="cert-t">Gestión de Proyectos</div><div class="cert-s">Diplomado · ZEGEL 2025</div></div>
+          <div class="cert"><div class="cert-t">SQL Server</div><div class="cert-s">INEI · 2025</div></div>
+          <div class="cert"><div class="cert-t">SIG ISO 9001/45001/14001</div><div class="cert-s">Diplomado · UNALM</div></div>
+          <div class="cert"><div class="cert-t">Power BI</div><div class="cert-s">New Horizons / IDAT</div></div>
+          <div class="cert"><div class="cert-t">Negociación Harvard</div><div class="cert-s">Inst. Europeo de Posgrado</div></div>
+          <div class="cert"><div class="cert-t">Design Thinking</div><div class="cert-s">Inst. Europeo de Posgrado</div></div>
+          <div class="cert"><div class="cert-t">Python Ciencia de Datos</div><div class="cert-s">CEPS-UNI</div></div>
+          <div class="cert"><div class="cert-t">Ágil &amp; Lean</div><div class="cert-s">Fundación Telefónica</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="sec-head">Logros de impacto medible</div>
+      <div class="impact-list">
+        <div class="imp">
+          <div class="imp-ico">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.3 3.9H13l-3.1 2.3 1.2 3.8L8 9.8 4.9 12l1.2-3.8L3 5.9h3.7L8 2z" fill="#1d9e75"/></svg>
+          </div>
+          <div style="flex:1">
+            <div class="imp-t">Sistema de Gestión de la Innovación</div>
+            <div class="imp-d">Madurez institucional llevada de 3% a 34.38% en 12 meses — metodología propia.</div>
+            <div class="prog-row">
+              <div style="font-size:9px;color:#9c9a92;min-width:16px">3%</div>
+              <div class="prog-track"><div class="prog-fill" style="width:34%"></div></div>
+              <div class="prog-l">34%</div>
+            </div>
+          </div>
+        </div>
+        <div class="imp">
+          <div class="imp-ico">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="#1d9e75" stroke-width="1.2"/><path d="M5 7h6M5 10h4" stroke="#1d9e75" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="imp-t">Automatización de gestión normativa</div>
+            <div class="imp-d">Lideró la automatización del proceso normativo y definió lineamientos base de innovación para toda la organización.</div>
+          </div>
+        </div>
+        <div class="imp">
+          <div class="imp-ico">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13V7m3.5 6V4M10 13V8m3.5 5V5" stroke="#1d9e75" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="imp-t">BPM en 20+ procesos críticos</div>
+            <div class="imp-d">Modelado As-Is/To-Be en Bizagi con reducción de reprocesos y mejora operativa medida por KPIs en Power BI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
